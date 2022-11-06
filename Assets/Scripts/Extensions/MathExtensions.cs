@@ -26,10 +26,8 @@ namespace SneakawayUtilities
             }
         }
 
-
-
         /////////////////////////////////
-        //////////// RANDOM /////////////
+        ////////// RANDOM INT ///////////
         /////////////////////////////////
 
         /// <summary>Return a random int</summary>
@@ -63,6 +61,9 @@ namespace SneakawayUtilities
             return r;
         }
 
+		/////////////////////////////////
+        ///////// RANDOM FLOAT //////////
+        /////////////////////////////////
 
         /// <summary>Return a random float within a Range</summary>
         /// <param name="range"></param>
@@ -81,15 +82,9 @@ namespace SneakawayUtilities
             return r;
         }
 
-
-
-
-
-
         /////////////////////////////////
         //////// RANDOM VECTOR3 /////////
         /////////////////////////////////
-
 
         /// <summary>
         /// Return a Vector3 with random X,Y,Z from Range

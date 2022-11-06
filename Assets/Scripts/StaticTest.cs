@@ -5,6 +5,7 @@ using UnityEngine;
 public static class StaticTest
 {
 
-	public static string greeting = "Hello world!";
+		public static string greeting = "Hello world!";
+			public static int number = 1;
 
 }

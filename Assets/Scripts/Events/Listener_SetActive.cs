@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityTimer;
+// using UnityTimer;
 
-/** 
+/**
  *  LISTEN for event => Set an object active/inactive
  */
 
@@ -49,12 +49,12 @@ public class Listener_SetActive : MonoBehaviour
         {
             triggered = true;
 
-            // after delay
-            Timer.Register(delay, () =>
-            {
-                // hide overlay
-                obj.SetActive(triggeredState);
-            });
+            // // after delay
+            // Timer.Register(delay, () =>
+            // {
+            //     // hide overlay
+            //     obj.SetActive(triggeredState);
+            // });
         }
     }
 
