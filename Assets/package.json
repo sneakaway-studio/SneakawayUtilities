@@ -1,0 +1,13 @@
+{
+  "name": "com.sneakaway-studio.sneakaway-utilities",
+  "version": "0.0.1",
+  "displayName": "SneakawayUtilities",
+  "description": "A small library",
+  "author": {
+    "name": "Owen Mundy",
+    "email": "sneakawaystudio@gmail.com",
+    "url": "https://sneakaway.studio"
+  },
+  "unity": "2019.1",
+  "type": "library"
+}
