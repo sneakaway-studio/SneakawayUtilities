@@ -8,23 +8,13 @@ The third attempt to share code across projects, using the "linked submodule" me
 ## Instructions
 
 
-#### 1. Create the lib project
-e.g. https://github.com/sneakaway-studio/SneakawayUtilities
+1. Create a new Unity project for scripts to share, init / publish on Github<br>
+	e.g. https://github.com/sneakaway-studio/SneakawayUtilities
+2. Import the lib as submodule
 
 ```bash
-# Create new Unity project, add scripts to share, then...
-cd ~/<project_root> # change to project root
-git init # begin version tracking
-git push # publish lib to remote
-```
-
-
-#### 2. Import the lib as submodule
-In the project where you want to use scripts from lib...
-
-```bash
-# confirm you are in the project root
-pwd
+# confirm you are in *your* project root
+cd ~/<project_root>
 # create a folder (for all submodules)
 mkdir Submodules
 # change into it
@@ -35,7 +25,7 @@ git submodule add https://github.com/sneakaway-studio/SneakawayUtilities Sneakaw
 ^ This ensures the code is now shared in both project but tracked by git. However, because it is not inside /Assets then Unity doesn't actually import the code into the **proj**. So, we need to link the code...
 
 
-#### 3. Link the lib code
+3. Link the lib code
 
 ```bash
 # change into the /Assets dir
@@ -46,11 +36,19 @@ mkdir Submodules
 ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 ```
 
-#### References
+4. Keep in mind the following:
 
-- prime31 [A Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/)
-- xtoff [Git-submodules in Unity (my notes)](https://cschnack.de/blog/2019/gitsubm/) January 24, 2019
-- https://devconnected.com/how-to-add-and-update-git-submodules/
+- You can create/edit/delete files in either the `~/<project>/Submodules` or `~/<project>/Assets/Plugins` folders.
+- The best way to add library files to source control is with the command line inside `~/<project>/Submodules`
+- These tutorials: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
+
+
+
+
+
+
+
+
 
 
 
@@ -62,6 +60,9 @@ Move a submodule
 ```bash
 git mv old/submod new/submod
 ```
+
+Add or update https://devconnected.com/how-to-add-and-update-git-submodules/
+
 
 
 ## Dependencies
