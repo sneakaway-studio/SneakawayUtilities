@@ -61,7 +61,7 @@ namespace SneakawayUtilities
             return r;
         }
 
-		/////////////////////////////////
+        /////////////////////////////////
         ///////// RANDOM FLOAT //////////
         /////////////////////////////////
 
@@ -129,9 +129,7 @@ namespace SneakawayUtilities
         //////// RANDOM LIST<T> /////////
         /////////////////////////////////
 
-        /// <summary>
-        /// Return a random index from any List
-        /// </summary>
+        /// <summary>Return a random index from any List</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -140,7 +138,14 @@ namespace SneakawayUtilities
             return (int)Random.Range(0, list.Count);
         }
 
-
+        /// <summary>Return a random index from any List</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static T RandomListValue<T>(this List<T> list)
+        {
+            return list[list.RandomListIndex()];
+        }
 
 
 
