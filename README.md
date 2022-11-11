@@ -1,16 +1,23 @@
 
-# SneakawayUtilities v.3
+# SneakawayUtilities
 
-The third attempt to share code across projects, using the "linked submodule" method below
+Share common Unit / C# code across projects
+
+## About
+
+This project uses the "linked submodule" method to share code across multiple Unity projects...
+- In its own Unity project, so we can write tests
+- Its own Git repo so code can be edited / pushed back to origin
+- Only `Assets/` folder is symlinked so no Unity project / Git submodule issues (submodule duplicates in Github Desktop). Refer to these tutorials for details: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
 
 
 
-## Instructions
 
 
-1. Create a new Unity project for scripts to share, init / publish on Github<br>
-	e.g. https://github.com/sneakaway-studio/SneakawayUtilities
-2. Import the lib as submodule
+## To install in a Unity project
+
+
+### 1. Import the lib as submodule
 
 ```bash
 # confirm you are in *your* project root
@@ -25,7 +32,7 @@ git submodule add https://github.com/sneakaway-studio/SneakawayUtilities Sneakaw
 ^ This ensures the code is now shared in both project but tracked by git. However, because it is not inside /Assets then Unity doesn't actually import the code into the **proj**. So, we need to link the code...
 
 
-3. Link the lib code
+### 2. Link the lib code
 
 ```bash
 # change into the /Assets dir
@@ -36,18 +43,29 @@ mkdir Submodules
 ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 ```
 
-4. Keep in mind the following:
+### 3. Edit the code
 
-- You can create/edit/delete files in either the `~/<project>/Submodules` or `~/<project>/Assets/Plugins` folders.
-- The best way to add library files to source control is with the command line inside `~/<project>/Submodules`
-- These tutorials: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
-- The process of adding the submodule directly to an Assets directory created a lot of issues, especially with Github Desktop (it kept duplicating the submodule in the list!)
+- You can create/edit/delete files in any of the following
+	- `~/<project>/Submodules`
+	- `~/<project>/Assets/Plugins`
+	- `SneakawayUtilities/Assets/`
+- Source control changes (keep in their own branches)
+ 	- Command line or Atom in `~/<project>/Submodules` => `<project-name>-edits`
+ 	- Github Desktop `SneakawayUtilities/` => `main`
 
 
 
 
 
 
+
+
+## To do
+
+- [ ] Import many more scripts inside Graverobbers Passage
+- [ ] Switch those scripts in Graverobbers Passage to this repo
+- [ ] Change all to `namespace SneakawayUtilities`
+- [ ] FInish setting up the package https://www.youtube.com/watch?v=mgsLb3TKljk&ab_channel=Unity
 
 
 
@@ -68,17 +86,6 @@ Add or update https://devconnected.com/how-to-add-and-update-git-submodules/
 ## Dependencies
 
 https://github.com/akbiggs/UnityTimer
-
-
-## To do
-
-- [ ] Import many more scripts inside Graverobbers Passage
-- [ ] Switch those scripts in Graverobbers Passage to this repo
-- [ ] Change all to `namespace SneakawayUtilities`
-- [ ] FInish setting up the package https://www.youtube.com/watch?v=mgsLb3TKljk&ab_channel=Unity
-
-
-
 
 
 
