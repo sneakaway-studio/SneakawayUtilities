@@ -1,30 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityTimer;
 
 /**
- *  LISTEN for event => Set an object active/inactive
+ *  Set an object active | inactive on Event
  */
 
-public class Listener_SetActive : MonoBehaviour
+public class SetActiveListener : MonoBehaviour
 {
     [Tooltip("Object to affect")]
     [SerializeField] GameObject obj;
 
-    [Tooltip("The event that will trigger this listener")]
+    [Tooltip("Event name that triggers this listener")]
     [SerializeField] string eventName = "";
 
-    [Tooltip("Before event")]
+    [Tooltip("Default state before event")]
     [SerializeField] bool initialState = false;
 
-    [Tooltip("After event")]
+    [Tooltip("State after event")]
     [SerializeField] bool triggeredState = false;
 
-    [Tooltip("Event has been received")]
+    [Tooltip("If event has occurred")]
     [SerializeField] bool triggered = false;
 
-    [Tooltip("Delay in seconds")]
+    [Tooltip("Delay (in seconds) before state changes")]
     [SerializeField] float delay;
 
     void Awake()
@@ -32,6 +31,8 @@ public class Listener_SetActive : MonoBehaviour
         // initial state
         obj.SetActive(initialState);
     }
+	/* To disable in Inspector */
+	void Start() {}
 
     private void OnEnable()
     {
@@ -44,18 +45,15 @@ public class Listener_SetActive : MonoBehaviour
 
     void Trigger()
     {
-        // only once
-        if (!triggered)
-        {
-            triggered = true;
+        // only change the state once
+        if (!triggered) return;
+        triggered = true;
 
-            // // after delay
-            // Timer.Register(delay, () =>
-            // {
-            //     // hide overlay
-            //     obj.SetActive(triggeredState);
-            // });
-        }
+		// change the state after a delay
+		Invoke("UpdateState", delay);
     }
+
+	void UpdateState() => obj.SetActive(triggeredState);
+
 
 }
