@@ -41,7 +41,7 @@ ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 - You can create/edit/delete files in either the `~/<project>/Submodules` or `~/<project>/Assets/Plugins` folders.
 - The best way to add library files to source control is with the command line inside `~/<project>/Submodules`
 - These tutorials: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
-
+- The process of adding the submodule directly to an Assets directory created a lot of issues, especially with Github Desktop (it kept duplicating the submodule in the list!)
 
 
 
