@@ -128,4 +128,22 @@ public class MathExtensions
         Assert.IsTrue((val == 123), "Value passes");
     }
 
+
+    /////////////////////////////////
+    //////// RANDOM <space> /////////
+    /////////////////////////////////
+
+	[Test]
+    public void RandomPointInBounds()
+    {
+        Bounds b = new Bounds(new Vector3(0, 0, 0), new Vector3(2, 2, 2));
+
+        Vector3 point = Math.RandomPointInBounds(b);
+        Assert.IsTrue(point.GetType() == typeof(Vector3), "Type passes");
+        // Assert.IsTrue((point == 123), "Value passes");
+    }
+
+
+
+
 }
