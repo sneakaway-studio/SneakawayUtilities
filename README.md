@@ -1,7 +1,7 @@
 
 # SneakawayUtilities
 
-Share common Unit / C# code across projects
+Share common Unity / C# code across projects
 
 ## About
 

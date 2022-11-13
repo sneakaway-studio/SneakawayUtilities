@@ -87,7 +87,13 @@ namespace SneakawayUtilities
             return $"<color=#{color}>{text}</color>";
         }
 
-
+		/**
+		 *	Draw ray between two points
+		 */
+	    public static void DrawRayBetweenPoints (Vector3 p1, Vector3 p2)
+	    {
+	        Debug.DrawRay (p1, (p2 - p1), Color.yellow);
+	    }
 
 
     }
