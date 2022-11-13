@@ -153,9 +153,10 @@ namespace SneakawayUtilities
         //////// RANDOM <space> /////////
         /////////////////////////////////
 
-		/**
-	     *  Return random Vector3 position inside bounds
-	     */
+
+		/// <summary>Return random Vector3 position inside bounds</summary>
+		/// <param name="bounds"></param>
+        /// <returns>True</returns>
 	    public static Vector3 RandomPointInBounds (Bounds bounds)
 	    {
 	        return new Vector3 (
@@ -164,7 +165,7 @@ namespace SneakawayUtilities
 	            Random.Range (bounds.min.z, bounds.max.z)
 	        );
 	    }
-		
+
 		/**
 	     *  Return true if point is inside worldcontainer collider
 	     */
