@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SneakawayUtilities;
 
 namespace SneakawayUtilities
 {
-    public static class CameraExtensions
+    public static class CameraTools
     {
         static Camera cam = Camera.main;
 
@@ -14,17 +15,17 @@ namespace SneakawayUtilities
 
         public static float GetCameraAspectRatio()
         {
-			// width / height
+            // width / height
             return (float)Screen.width / (float)Screen.height;
         }
         public static float GetCameraHeight()
         {
-			// The orthographicSize is half the size of the vertical viewing volume.
-			// The horizontal size of the viewing volume depends on the aspect ratio.
+            // The orthographicSize is half the size of the vertical viewing volume.
+            // The horizontal size of the viewing volume depends on the aspect ratio.
             return cam.orthographicSize * 2;
         }
 
-// THIS NEEDS TO BE IMPROVED / TESTED 		
+        // THIS NEEDS TO BE IMPROVED / TESTED
         public static Vector2 ReturnCameraBounds()
         {
             float aspectRatio = GetCameraAspectRatio();

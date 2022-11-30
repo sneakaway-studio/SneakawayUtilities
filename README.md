@@ -11,6 +11,21 @@ This project uses the "linked submodule" method to share code across multiple Un
 - Only `Assets/` folder is symlinked so no Unity project / Git submodule issues (submodule duplicates in Github Desktop). Refer to these tutorials for details: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
 
 
+```cs
+// structure of "<Category>Tools" where static methods live
+// everything else is a droppable monobehavior
+namespace SneakawayUtilities {
+	public static class MathTools {
+		public static int Random(){
+			// code
+		}
+	}
+}
+```
+
+
+
+
 
 
 
@@ -64,8 +79,6 @@ ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 
 - [ ] Import many more scripts inside Graverobbers Passage
 - [ ] Switch those scripts in Graverobbers Passage to this repo
-- [ ] Change all to `namespace SneakawayUtilities`
-- [ ] FInish setting up the package https://www.youtube.com/watch?v=mgsLb3TKljk&ab_channel=Unity
 
 
 

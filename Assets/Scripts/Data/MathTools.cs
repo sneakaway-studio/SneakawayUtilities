@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SneakawayUtilities
 {
-    public static class Math
+    public static class MathTools
     {
 
         /////////////////////////////////
@@ -25,6 +25,44 @@ namespace SneakawayUtilities
                 max = _max;
             }
         }
+
+        /// <summary>
+        /// "Pagination" struct with prev/current/next
+        /// </summary>
+        [System.Serializable]
+        public struct Indexer
+        {
+            public int prev;
+            public int current;
+            public int next;
+            public int count;
+            public Indexer(int _count)
+            {
+                count = _count; // e.g. count = 10 = 10,0,1
+                prev = count - 1;
+                current = 0;
+                next = 1;
+            }
+            // advance to next index, update values
+            public void NextIndex() => UpdateIndexes(next);
+            // go to prev index, update values
+            public void PrevIndex() => UpdateIndexes(prev);
+
+            // call after current has been set, to set / check values
+            public void UpdateIndexes(int _current)
+            {
+                current = _current;
+                //if index should restart
+                if (current >= count) current = 0;
+                // set next index, check if it should loop
+                next = current + 1;
+                if (next >= count) next = 0;
+                // set prev, check if it should loop
+                prev = current - 1;
+                if (prev < 0) prev = count - 1;
+            }
+        }
+
 
         /////////////////////////////////
         ////////// RANDOM INT ///////////
@@ -154,25 +192,25 @@ namespace SneakawayUtilities
         /////////////////////////////////
 
 
-		/// <summary>Return random Vector3 position inside bounds</summary>
-		/// <param name="bounds"></param>
+        /// <summary>Return random Vector3 position inside bounds</summary>
+        /// <param name="bounds"></param>
         /// <returns>True</returns>
-	    public static Vector3 RandomPointInBounds (Bounds bounds)
-	    {
-	        return new Vector3 (
-	            Random.Range (bounds.min.x, bounds.max.x),
-	            Random.Range (bounds.min.y, bounds.max.y),
-	            Random.Range (bounds.min.z, bounds.max.z)
-	        );
-	    }
+        public static Vector3 RandomPointInBounds(Bounds bounds)
+        {
+            return new Vector3(
+                Random.Range(bounds.min.x, bounds.max.x),
+                Random.Range(bounds.min.y, bounds.max.y),
+                Random.Range(bounds.min.z, bounds.max.z)
+            );
+        }
 
-		/**
+        /**
 	     *  Return true if point is inside worldcontainer collider
 	     */
-	    public static bool IsPointWithinCollider (BoxCollider collider, Vector3 point)
-	    {
-	        return (collider.ClosestPoint (point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
-	    }
+        public static bool IsPointWithinCollider(BoxCollider collider, Vector3 point)
+        {
+            return (collider.ClosestPoint(point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
+        }
 
 
     }

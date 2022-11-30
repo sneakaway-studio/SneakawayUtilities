@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SneakawayUtilities
 {
-    public static class DebugExtensions
+    public static class DebugTools
     {
 
         // https://gamedev.stackexchange.com/questions/176292/can-i-show-logs-in-unity-with-different-colors-or-different-icon-signs

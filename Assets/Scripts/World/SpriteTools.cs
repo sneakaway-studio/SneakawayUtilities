@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using SneakawayUtilities;
 
 namespace SneakawayUtilities
 {
-    public static class SpriteExtensions
+    public static class SpriteTools
     {
 
 

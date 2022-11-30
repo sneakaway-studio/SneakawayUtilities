@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using SneakawayUtilities;
 
-public class MathExtensions
+public class MathTools_Tests
 {
 
     /////////////////////////////////
@@ -15,7 +15,7 @@ public class MathExtensions
     [Test]
     public void Range()
     {
-        Math.Range val = new Math.Range(0, 1);
+        MathTools.Range val = new MathTools.Range(0, 1);
         Assert.AreEqual(0f, val.min, "Range min passes");
         Assert.AreEqual(1f, val.max, "Range max passes");
     }
@@ -28,14 +28,14 @@ public class MathExtensions
     [Test]
     public void RandomInt_Int()
     {
-        int val = Math.RandomInt(0, 1);
+        int val = MathTools.RandomInt(0, 1);
         Assert.IsTrue(val.GetType() == typeof(int), "Type passes");
         Assert.IsTrue((val >= 0 && val <= 1), "Value passes");
     }
     [Test]
     public void RandomInt_Float()
     {
-        int val = Math.RandomInt(0f, 1f);
+        int val = MathTools.RandomInt(0f, 1f);
         Assert.IsTrue(val.GetType() == typeof(int), "Type passes");
         Assert.IsTrue((val >= 0 && val <= 1), "Value passes");
     }
@@ -47,14 +47,14 @@ public class MathExtensions
     [Test]
     public void RandomFloatFromRange()
     {
-        float val = Math.RandomFloatFromRange(new Math.Range(3f, 4f));
+        float val = MathTools.RandomFloatFromRange(new MathTools.Range(3f, 4f));
         Assert.IsTrue(val.GetType() == typeof(float), "Type passes");
         Assert.IsTrue((val >= 3 && val <= 4), "Value passes");
     }
     [Test]
     public void RandomFloatFromVector2()
     {
-        float val = Math.RandomFloatFromVector2(new Vector2(3f, 4f));
+        float val = MathTools.RandomFloatFromVector2(new Vector2(3f, 4f));
         Assert.IsTrue(val.GetType() == typeof(float), "Type passes");
         Assert.IsTrue((val >= 3 && val <= 4), "Value passes");
         Assert.IsTrue(!(val < 3 && val > 4), "Value passes");
@@ -67,8 +67,8 @@ public class MathExtensions
     [Test]
     public void RandomVector3FromRange_3Ranges()
     {
-        Math.Range testRange = new Math.Range(3f, 4f);
-        Vector3 val = Math.RandomVector3FromRange(testRange, testRange, testRange);
+        MathTools.Range testRange = new MathTools.Range(3f, 4f);
+        Vector3 val = MathTools.RandomVector3FromRange(testRange, testRange, testRange);
         Assert.IsTrue(val.GetType() == typeof(Vector3), "Type passes");
         Assert.IsTrue((val.x >= 3f && val.x <= 4f), "x passes");
         Assert.IsTrue((val.y >= 3f && val.y <= 4f), "y passes");
@@ -77,8 +77,8 @@ public class MathExtensions
     [Test]
     public void RandomVector3FromRange_1Range()
     {
-        Math.Range testRange = new Math.Range(0f, 100f);
-        Vector3 val = Math.RandomVector3FromRange(testRange);
+        MathTools.Range testRange = new MathTools.Range(0f, 100f);
+        Vector3 val = MathTools.RandomVector3FromRange(testRange);
         Assert.IsTrue(val.GetType() == typeof(Vector3), "Type passes");
         Assert.IsTrue((val.x >= 0 && val.x <= 100), "x passes");
         Assert.IsTrue((val.y >= 0 && val.y <= 100), "y passes");
@@ -92,7 +92,7 @@ public class MathExtensions
     [Test]
     public void RandomQuaternion()
     {
-        Quaternion q = Math.RandomQuaternion();
+        Quaternion q = MathTools.RandomQuaternion();
         Assert.IsTrue(q.GetType() == typeof(Quaternion), "Type passes");
 
         // check that it is within the range
@@ -133,18 +133,18 @@ public class MathExtensions
     //////// RANDOM <space> /////////
     /////////////////////////////////
 
-	[Test]
+    [Test]
     public void RandomPointInBounds()
     {
-		// Create bounding box centered at the origin
+        // Create bounding box centered at the origin
         Bounds b = new Bounds(new Vector3(0, 0, 0), new Vector3(2, 2, 2));
-		// Debug.Log(b.size.x);
-		// The total size of the box. This is always twice as large as the extents.
+        // Debug.Log(b.size.x);
+        // The total size of the box. This is always twice as large as the extents.
         Assert.IsTrue((b.size.x == 2), "Bounds size passes");
-		// The extents of the Bounding Box. This is always half of the size of the Bounds.
+        // The extents of the Bounding Box. This is always half of the size of the Bounds.
         Assert.IsTrue((b.extents.x == 1), "Bounds extents passes");
-        Vector3 point = Math.RandomPointInBounds(b);
-		// Debug.Log(point);
+        Vector3 point = MathTools.RandomPointInBounds(b);
+        // Debug.Log(point);
         Assert.IsTrue(point.GetType() == typeof(Vector3), "Type passes");
         Assert.IsTrue((point.x >= -1 && point.x <= 1), "X passes");
         Assert.IsTrue((point.y >= -1 && point.y <= 1), "Y passes");

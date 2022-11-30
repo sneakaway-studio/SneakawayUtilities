@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SneakawayUtilities;
 
-public static class Test_StaticClass
+namespace SneakawayUtilities
 {
+	public static class Test_StaticClass
+	{
 
-	public static string greeting = "Hello world!";
-	public static int number = 1;
+		public static string greeting = "Hello world!";
+		public static int number = 1;
 
+	}
 }

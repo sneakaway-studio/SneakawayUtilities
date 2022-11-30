@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SneakawayUtilities
 {
-    public static class StringExtensions
+    public static class StringTools
     {
 
         /// <summary>

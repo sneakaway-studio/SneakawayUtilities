@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using SneakawayUtilities;
 
 namespace SneakawayUtilities
 {
-    public static class PhysicsHelpers
+    public static class PhysicsTools
     {
 
 
@@ -16,7 +17,7 @@ namespace SneakawayUtilities
 
         public static void SetGameObjectLayerMask(GameObject obj, string layerMaskName)
         {
-            // convert layermask name to layer integer 
+            // convert layermask name to layer integer
             int LayerIgnoreRaycast = LayerMask.NameToLayer(layerMaskName);
             // assign to layer
             obj.layer = LayerIgnoreRaycast;
