@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace SneakawayUtilities
+{
+    public static class TimeTools
+    {
+
+        /////////////////////////////////
+        ///////////// TYPES /////////////
+        /////////////////////////////////
+
+        /// <summary>
+        /// "Pagination" struct with prev/current/next
+        /// </summary>
+        [System.Serializable]
+        public struct Indexer
+        {
+            public int prev;
+            public int current;
+            public int next;
+            public int count;
+            // set default values
+            public Indexer(int _count)
+            {
+                count = _count; // e.g. count = 10 = 10,0,1
+                prev = count - 1;
+                current = 0;
+                next = 1;
+            }
+            // advance to next | prev index, update values
+            public void NextIndex() => UpdateIndexes(next);
+            public void PrevIndex() => UpdateIndexes(prev);
+
+            // call after current has been set, to set / check values
+            public void UpdateIndexes(int _current)
+            {
+                current = _current; // set current 
+                if (current >= count) current = 0; // if should loop
+                next = current + 1; // set next
+                if (next >= count) next = 0; // if should loop
+                prev = current - 1; // set prev
+                if (prev < 0) prev = count - 1; // if should loop
+            }
+        }
+
+
+    }
+}

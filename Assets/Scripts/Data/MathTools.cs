@@ -26,42 +26,7 @@ namespace SneakawayUtilities
             }
         }
 
-        /// <summary>
-        /// "Pagination" struct with prev/current/next
-        /// </summary>
-        [System.Serializable]
-        public struct Indexer
-        {
-            public int prev;
-            public int current;
-            public int next;
-            public int count;
-            public Indexer(int _count)
-            {
-                count = _count; // e.g. count = 10 = 10,0,1
-                prev = count - 1;
-                current = 0;
-                next = 1;
-            }
-            // advance to next index, update values
-            public void NextIndex() => UpdateIndexes(next);
-            // go to prev index, update values
-            public void PrevIndex() => UpdateIndexes(prev);
 
-            // call after current has been set, to set / check values
-            public void UpdateIndexes(int _current)
-            {
-                current = _current;
-                //if index should restart
-                if (current >= count) current = 0;
-                // set next index, check if it should loop
-                next = current + 1;
-                if (next >= count) next = 0;
-                // set prev, check if it should loop
-                prev = current - 1;
-                if (prev < 0) prev = count - 1;
-            }
-        }
 
 
         /////////////////////////////////
