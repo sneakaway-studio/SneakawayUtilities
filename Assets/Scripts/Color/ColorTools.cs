@@ -99,5 +99,35 @@ namespace SneakawayUtilities
 
 
 
+
+        public static void ChangeInstanceColor(
+            MonoBehaviour instance,
+            ColorInstance colorInstance,
+            Color color1,
+            Color color2,
+            float duration,
+            bool pingPong = false,
+            Action callback = null)
+        => instance.StartCoroutine(ChangeColorCo(instance, colorInstance, color1, color2, duration, pingPong, callback));
+
+        public static IEnumerator ChangeColorCo(MonoBehaviour instance, ColorInstance colorInstance,
+            Color color1, Color color2, float duration, bool pingPong, Action callback)
+        {
+            float t = 0;
+            // start at zero, end at 1
+            while (t <= 1.01)
+            {
+                colorInstance.color = Color.Lerp(color1, color2, t);
+                t += Time.deltaTime / duration;
+                yield return null;
+            }
+            //Debug.Log("ChangeMaterialColorCo() finished");
+
+            if (pingPong != false) ChangeInstanceColor(instance, colorInstance, color2, color1, duration, pingPong);
+            else if (callback != null) callback();
+        }
+
+
+
     }
 }
