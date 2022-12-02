@@ -262,8 +262,6 @@ MonoBehaviour:
     duration: 2
   - color: {r: 1, g: 0.8509804, b: 0.42745098, a: 1}
     duration: 2
-  - color: {r: 1, g: 0.966385, b: 0.759434, a: 1}
-    duration: 2
   - color: {r: 0.8632076, g: 0.97515655, b: 1, a: 1}
     duration: 2
   - color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
