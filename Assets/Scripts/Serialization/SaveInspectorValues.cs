@@ -17,8 +17,8 @@ namespace SneakawayUtilities
         // https://www.youtube.com/watch?v=Nl2imdYPm38&ab_channel=DanPos-GameDevTutorials%21
         // https://docs.unity3d.com/ScriptReference/Serialization.FormerlySerializedAsAttribute.html
 
-        public List<Object> oldProp = new List<Object>();
-        [FormerlySerializedAs("oldProp")] public List<Object> newFieldName = new List<Object>();
+        public List<Object> oldFieldName = new List<Object>();
+        [FormerlySerializedAs("oldFieldName")] public List<Object> newFieldName = new List<Object>();
 
         // 1. Add FormerlySerializedAs attribute
         // 2. Switch to the Editor (to let it serialize)
@@ -32,8 +32,8 @@ namespace SneakawayUtilities
         void OnValidate()
         {
             // can also be used to iterate over lists in scriptable objects
-            // public List<VizFiles> vizFiles = new List<VizFiles>();
-            // foreach (var f in vizFiles)
+            // public List<Object> newFieldName = new List<Object>();
+            // foreach (var f in oldFieldName)
             // {
             // 	f.prop = f.oldProp;
             // }
