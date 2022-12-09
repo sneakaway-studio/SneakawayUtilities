@@ -156,6 +156,7 @@ namespace SneakawayUtilities
                    Random.Range(yRange.min, yRange.max),
                    Random.Range(zRange.min, zRange.max)
                );
+            Debug.Log(currentRotation.eulerAngles);
 
             // return and apply the Quaternion.eulerAngles to the gameObject.transform.rotation
             return currentRotation;

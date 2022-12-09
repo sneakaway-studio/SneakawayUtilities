@@ -22,6 +22,23 @@ public class MathTools_Tests
 
 
     /////////////////////////////////
+    //////// RANDOM CHANCE //////////
+    /////////////////////////////////
+
+    [Test]
+    public void RandomChance_Bool()
+    {
+        bool val = MathTools.RandomChance(0.5f);
+        Assert.IsTrue(val.GetType() == typeof(bool), "Type passes");
+        // 1 in a million
+        bool val1 = MathTools.RandomChance(0.999999f);
+        Assert.IsTrue(val1 == true, "Value passes");
+        bool val2 = MathTools.RandomChance(0.000001f);
+        Assert.IsTrue(val2 == false, "Value passes");
+    }
+
+
+    /////////////////////////////////
     ////////// RANDOM INT ///////////
     /////////////////////////////////
 
@@ -40,10 +57,18 @@ public class MathTools_Tests
         Assert.IsTrue((val >= 0 && val <= 1), "Value passes");
     }
 
+
     /////////////////////////////////
     ///////// RANDOM FLOAT //////////
     /////////////////////////////////
 
+    [Test]
+    public void RandomFloat()
+    {
+        float val = MathTools.RandomFloat();
+        Assert.IsTrue(val.GetType() == typeof(float), "Type passes");
+        Assert.IsTrue((val >= 0 && val <= 1), "Value passes");
+    }
     [Test]
     public void RandomFloatFromRange()
     {
@@ -59,6 +84,7 @@ public class MathTools_Tests
         Assert.IsTrue((val >= 3 && val <= 4), "Value passes");
         Assert.IsTrue(!(val < 3 && val > 4), "Value passes");
     }
+
 
     /////////////////////////////////
     //////// RANDOM VECTOR3 /////////
@@ -101,7 +127,22 @@ public class MathTools_Tests
         Assert.IsTrue((angles.y >= 0 && angles.y <= 360), "y passes");
         Assert.IsTrue((angles.z >= 0 && angles.z <= 360), "z passes");
     }
+    [Test]
+    public void RandomQuaternion_Range()
+    {
+        Quaternion q = MathTools.RandomQuaternion(
+            new MathTools.Range(0f, 10f),
+            new MathTools.Range(0f, 20f),
+            new MathTools.Range(0f, 30f)
+        );
+        Assert.IsTrue(q.GetType() == typeof(Quaternion), "Type passes");
 
+        // check that it is within the range
+        Vector3 angles = q.eulerAngles;
+        Assert.IsTrue((angles.x >= 0 && angles.x <= 10), "x passes");
+        Assert.IsTrue((angles.y >= 0 && angles.y <= 20), "y passes");
+        Assert.IsTrue((angles.z >= 0 && angles.z <= 30), "z passes");
+    }
 
 
     /////////////////////////////////
