@@ -68,20 +68,8 @@ namespace SneakawayUtilities
         public static Vector3[] GetBoundsCorners(Bounds bounds)
         {
             Vector3[] points = new Vector3[8];
-            points[0] = bounds.min;
-            points[1] = bounds.max;
-
-            // Note that this will create a world space bounding box:
-            // if your collider is at an odd angle, this will give you
-            // a rather large box around it.If you need a local space
-            // bounding box(which can be combined with the Transform
-            // to put it in world space), replace the first two
-            // lines with the following, which will get you a box that
-            // matches the BoxCollider gizmo after being transformed:
-            // https://answers.unity.com/questions/29797/how-to-get-8-vertices-from-bounds-properties.html
-            points[0] = bounds.center - (bounds.size / 2f);
-            points[1] = bounds.center + (bounds.size / 2f);
-
+            points[0] = GetBoundsLocalMin(bounds);
+            points[1] = GetBoundsLocalMax(bounds);
             // west
             points[2] = new Vector3(points[0].x, points[1].y, points[0].z);
             points[3] = new Vector3(points[0].x, points[1].y, points[1].z);
@@ -92,7 +80,51 @@ namespace SneakawayUtilities
             points[7] = new Vector3(points[1].x, points[1].y, points[0].z);
             return points;
         }
-
+        // Using bounds.min || bounds.max creates a world space bounding box.
+        // A collider at an odd angle will return a large box around the extents.
+        // The below gets a local space bounding box (compare with a Gizmo if needed)
+        // https://answers.unity.com/questions/29797/how-to-get-8-vertices-from-bounds-properties.html
+        public static Vector3 GetBoundsLocalMin(Bounds bounds)
+        {
+            //return bounds.min;
+            return bounds.center - (bounds.size / 2f);
+        }
+        public static Vector3 GetBoundsLocalMax(Bounds bounds)
+        {
+            //return bounds.max;
+            return bounds.center + (bounds.size / 2f);
+        }
+        /// <summary>
+        /// Return opposite points across a bounds, effectively slicing it in half
+        /// </summary>
+        /// <param name="bounds"></param>
+        /// <returns></returns>
+        public static Vector3[] GetBoundsFarPoints(Bounds bounds, Vector3 axis)
+        {
+            Vector3 min = GetBoundsLocalMin(bounds);
+            Vector3 max = GetBoundsLocalMax(bounds);
+            //Debug.Log("GetBoundsFarPoints() min" + min);
+            //Debug.Log("GetBoundsFarPoints() max" + max);
+            Vector3[] points = new Vector3[2];
+            if (axis == new Vector3(1, 0, 0))
+            {
+                points[0] = new Vector3(min.x, 0, 0);
+                points[1] = new Vector3(max.x, 0, 0);
+            }
+            else if (axis == new Vector3(0, 1, 0))
+            {
+                points[0] = new Vector3(0, min.y, 0);
+                points[1] = new Vector3(0, max.y, 0);
+            }
+            else if (axis == new Vector3(0, 0, 1))
+            {
+                points[0] = new Vector3(0, 0, min.z);
+                points[1] = new Vector3(0, 0, max.z);
+            }
+            //Debug.Log("GetBoundsFarPoints() " + points[0].ToString());
+            //Debug.Log("GetBoundsFarPoints() " + points[1].ToString());
+            return points;
+        }
 
 
     }
