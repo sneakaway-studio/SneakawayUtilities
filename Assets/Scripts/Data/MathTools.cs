@@ -140,12 +140,17 @@ namespace SneakawayUtilities
         /////// RANDOM QUATERNION ///////
         /////////////////////////////////
 
+        /// <summary>
+        /// Return a random quaternion with angles between 0-360 (see tests for notes)
+        /// </summary>
+        /// <returns></returns>
         public static Quaternion RandomQuaternion()
         {
             return Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
         }
         public static Quaternion RandomQuaternion(Range xRange, Range yRange, Range zRange)
         {
+            // another valid use??
             //return Quaternion.Euler(Random.Range(xRange.min, xRange.max), Random.Range(yRange.min, yRange.max), Random.Range(zRange.min, zRange.max));
 
             Quaternion currentRotation = new Quaternion();
@@ -168,7 +173,7 @@ namespace SneakawayUtilities
         //////// RANDOM LIST<T> /////////
         /////////////////////////////////
 
-        /// <summary>Return a random index from any List</summary>
+        /// <summary>Return a random index from any List<T></summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <returns></returns>

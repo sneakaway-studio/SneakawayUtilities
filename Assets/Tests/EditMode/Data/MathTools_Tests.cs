@@ -128,7 +128,7 @@ public class MathTools_Tests
         Assert.IsTrue((angles.z >= 0 && angles.z <= 360), "z passes");
     }
     [Test]
-    public void RandomQuaternion_Range()
+    public void RandomQuaternion_PlusRange()
     {
         Quaternion q = MathTools.RandomQuaternion(
             new MathTools.Range(0f, 10f),
@@ -142,6 +142,22 @@ public class MathTools_Tests
         Assert.IsTrue((angles.x >= 0 && angles.x <= 10), "x passes");
         Assert.IsTrue((angles.y >= 0 && angles.y <= 20), "y passes");
         Assert.IsTrue((angles.z >= 0 && angles.z <= 30), "z passes");
+    }
+    [Test]
+    public void RandomQuaternion_NegRange()
+    {
+        Quaternion q = MathTools.RandomQuaternion(
+            new MathTools.Range(-10f, 0f),
+            new MathTools.Range(-180f, 0f),
+            new MathTools.Range(-30f, 30f)
+        );
+        Assert.IsTrue(q.GetType() == typeof(Quaternion), "Type passes");
+
+        // check that it is within the range
+        Vector3 angles = q.eulerAngles;
+        Assert.IsTrue((angles.x >= 350 && angles.x <= 360), "x passes");
+        Assert.IsTrue((angles.y >= 180 && angles.y <= 360), "y passes");
+        Assert.IsTrue((angles.z >= 330 || angles.z <= 30), "z passes");
     }
 
 
