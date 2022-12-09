@@ -28,6 +28,26 @@ namespace SneakawayUtilities
 
 
 
+        /////////////////////////////////
+        //////// RANDOM CHANCE //////////
+        /////////////////////////////////
+
+        /// <summary>
+        /// Returns true if percent is > random 0-1
+        /// </summary>
+        /// <param name="percent"></param>
+        /// <returns></returns>
+        public static bool RandomChance(float percent)
+        {
+            if (RandomFloat() < percent) return true;
+            return false;
+        }
+
+        public static float RandomFloat()
+        {
+            return Random.Range(0f, 1f);
+        }
+
 
         /////////////////////////////////
         ////////// RANDOM INT ///////////
@@ -124,7 +144,22 @@ namespace SneakawayUtilities
         {
             return Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
         }
+        public static Quaternion RandomQuaternion(Range xRange, Range yRange, Range zRange)
+        {
+            //return Quaternion.Euler(Random.Range(xRange.min, xRange.max), Random.Range(yRange.min, yRange.max), Random.Range(zRange.min, zRange.max));
 
+            Quaternion currentRotation = new Quaternion();
+
+            // change Vector3 > Quanternion.eulerAngle format
+            currentRotation.eulerAngles = new Vector3(
+                   Random.Range(xRange.min, xRange.max),
+                   Random.Range(yRange.min, yRange.max),
+                   Random.Range(zRange.min, zRange.max)
+               );
+
+            // return and apply the Quaternion.eulerAngles to the gameObject.transform.rotation
+            return currentRotation;
+        }
 
 
 
