@@ -193,30 +193,7 @@ namespace SneakawayUtilities
 
 
 
-        /////////////////////////////////
-        //////// RANDOM <space> /////////
-        /////////////////////////////////
 
-
-        /// <summary>Return random Vector3 position inside bounds</summary>
-        /// <param name="bounds"></param>
-        /// <returns>True</returns>
-        public static Vector3 RandomPointInBounds(Bounds bounds)
-        {
-            return new Vector3(
-                Random.Range(bounds.min.x, bounds.max.x),
-                Random.Range(bounds.min.y, bounds.max.y),
-                Random.Range(bounds.min.z, bounds.max.z)
-            );
-        }
-
-        /**
-	     *  Return true if point is inside worldcontainer collider
-	     */
-        public static bool IsPointWithinCollider(BoxCollider collider, Vector3 point)
-        {
-            return (collider.ClosestPoint(point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
-        }
 
 
     }

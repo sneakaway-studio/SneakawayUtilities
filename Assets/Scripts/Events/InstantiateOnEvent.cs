@@ -51,7 +51,7 @@ namespace SneakawayUtilities
         {
             for (int i = 0; i < count; i++)
             {
-                if (boxCollider != null) initialPosition = MathTools.RandomPointInBounds(boxCollider.bounds);
+                if (boxCollider != null) initialPosition = PhysicsTools.RandomPointInBounds(boxCollider.bounds);
                 Instantiate(prefab, initialPosition, Quaternion.identity);
             }
         }
