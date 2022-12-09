@@ -16,28 +16,40 @@ namespace SneakawayUtilities
         public GameObject obj;
 
         [Tooltip("If neither obj or component is set then will default to this gameObject")]
-        public Component component;
-
-        [Tooltip("Set true to become active, false to hide")]
-        public bool setActive;
+        public string componentName;
 
         [Tooltip("Set true to become active, false to hide")]
         public string prefabName;
 
+        [Tooltip("Set true to become active, false to hide")]
+        public bool setActive;
+
         private void Awake()
         {
             // if obj is not set default to this gameObject
-            if (obj == null && component == null) obj = gameObject;
-            //Debug.Log("SetActiveOnAwake [1] " + obj.name);
+            if (obj == null && componentName == "") obj = gameObject;
 
-            // for using to hide left out prefabs (not sure this is necessary thanks to the above)
+            // hide left out prefabs (not sure this is necessary thanks to the above)
             if (prefabName != "" && obj.name != prefabName) return;
-            //Debug.Log("SetActiveOnAwake [2] " + obj.name);
 
-            // set active or not
-            obj.SetActive(setActive);
+            if (obj != null)
+            {
+                obj.SetActive(setActive);
+            }
+            else
+            {
+                switch (componentName)
+                {
+                    case "SpriteRenderer":
+                        GetComponent<SpriteRenderer>().enabled = false;
+                        break;
+                    case "MeshRenderer":
+                        GetComponent<MeshRenderer>().enabled = false;
+                        break;
+                }
+            }
         }
-        // to disable this componetn in inspector
+        // to disable this component in inspector
         private void Start() { }
     }
 }
