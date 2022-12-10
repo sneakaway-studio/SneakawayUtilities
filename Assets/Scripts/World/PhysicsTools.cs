@@ -32,7 +32,7 @@ namespace SneakawayUtilities
         /////////////////////////////////
 
         /// <summary>Return random Vector3 position inside bounds</summary>
-        /// <param name="bounds"></param>
+		/// <param name="bounds">A bounds object</param>
         /// <returns>True</returns>
         public static Vector3 RandomPointInBounds(Bounds bounds)
         {
@@ -43,9 +43,7 @@ namespace SneakawayUtilities
             );
         }
 
-        /// <summary>
-        /// Return true if point is inside worldcontainer collider
-        /// </summary>
+        /// <summary>Return true if point is inside worldcontainer collider</summary>
         /// <param name="collider"></param>
         /// <param name="point"></param>
         /// <returns></returns>
@@ -63,7 +61,7 @@ namespace SneakawayUtilities
         ///  Min------6'
         ///
         /// <summary>Get the 8 vertices of a bounds</summary>
-        /// <param name="bounds"></param>
+		/// <param name="bounds">A bounds object</param>
         /// <returns></returns>
         public static Vector3[] GetBoundsCorners(Bounds bounds)
         {
@@ -80,24 +78,29 @@ namespace SneakawayUtilities
             points[7] = new Vector3(points[1].x, points[1].y, points[0].z);
             return points;
         }
-        // Using bounds.min || bounds.max creates a world space bounding box.
-        // A collider at an odd angle will return a large box around the extents.
-        // The below gets a local space bounding box (compare with a Gizmo if needed)
-        // https://answers.unity.com/questions/29797/how-to-get-8-vertices-from-bounds-properties.html
+
+        /// <summary>Return the actual (local space) bounding box min of a bounds</summary>
+		/// <param name="bounds">A bounds object</param>
+		/// <returns></returns>
         public static Vector3 GetBoundsLocalMin(Bounds bounds)
         {
+            // Bounds.min and .max reference a bounding box in world space so colliders rotated will return a large box around the extents.
             //return bounds.min;
             return bounds.center - (bounds.size / 2f);
         }
+        /// <summary>Return the actual (local space) bounding box max of a bounds</summary>
+        /// <param name="bounds">A bounds object</param>
+        /// <returns></returns>
         public static Vector3 GetBoundsLocalMax(Bounds bounds)
         {
             //return bounds.max;
             return bounds.center + (bounds.size / 2f);
         }
+
         /// <summary>
         /// Return opposite points across a bounds, effectively slicing it in half
         /// </summary>
-        /// <param name="bounds"></param>
+        /// <param name="bounds">A bounds object</param>
         /// <returns></returns>
         public static Vector3[] GetBoundsFarPoints(Bounds bounds, Vector3 axis)
         {
@@ -126,6 +129,21 @@ namespace SneakawayUtilities
             return points;
         }
 
+        /// <summary>Return the longest side of a bounds</summary>
+		/// <param name="bounds">A bounds object</param>
+		/// <returns></returns>
+        public static float GetBoundsLongestSide(Bounds bounds)
+        {
+            return Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+        }
+
+        /// <summary>Return the perimeter of a bounds</summary>
+		/// <param name="bounds">A bounds object</param>
+		/// <returns></returns>
+        public static float GetBoundsPerimeter(Bounds bounds)
+        {
+            return bounds.size.x + bounds.size.y + bounds.size.z;
+        }
 
     }
 }

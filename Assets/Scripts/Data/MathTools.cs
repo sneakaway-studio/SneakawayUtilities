@@ -54,8 +54,8 @@ namespace SneakawayUtilities
         /////////////////////////////////
 
         /// <summary>Return a random int</summary>
-        /// <param name="min">int</param>
-        /// <param name="max">int</param>
+        /// <param name="min">Minimum</param>
+        /// <param name="max">Maximium</param>
         /// <returns>int</returns>
         public static int RandomInt(this int min, int max)
         {
@@ -69,8 +69,8 @@ namespace SneakawayUtilities
             return r;
         }
         /// <summary>Return a random int (from floats)</summary>
-        /// <param name="min">float</param>
-        /// <param name="max">float</param>
+        /// <param name="min">Minimum</param>
+        /// <param name="max">Maximium</param>
         /// <returns>int</returns>
         public static int RandomInt(this float min, float max)
         {
@@ -161,7 +161,7 @@ namespace SneakawayUtilities
                    Random.Range(yRange.min, yRange.max),
                    Random.Range(zRange.min, zRange.max)
                );
-            Debug.Log(currentRotation.eulerAngles);
+            //Debug.Log(currentRotation.eulerAngles);
 
             // return and apply the Quaternion.eulerAngles to the gameObject.transform.rotation
             return currentRotation;
