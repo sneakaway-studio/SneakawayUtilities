@@ -17,5 +17,15 @@ namespace SneakawayUtilities
         }
 
 
+        public static string FormatZeros(this int num, string digits = "00")
+        {
+            return num.ToString(digits);
+        }
+        public static string FormatZeros(this float num, string digits = "00")
+        {
+            return num.ToString(digits);
+        }
+
+
     }
 }

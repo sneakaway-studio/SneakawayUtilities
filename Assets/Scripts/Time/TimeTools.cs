@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace SneakawayUtilities
 {
@@ -52,6 +53,19 @@ namespace SneakawayUtilities
             }
         }
 
+
+        public static string ToStringDateTime24Hour(this DateTime dt)
+        {
+            return dt.ToString(@"HH\:mm\:ss");
+        }
+        public static string ToStringTime24(this DateTime dt)
+        {
+            return dt.ToString(@"HH\:mm\:ss");
+        }
+        public static string ToStringTime24(this TimeSpan dt)
+        {
+            return dt.ToString(@"HH\:mm\:ss");
+        }
 
     }
 }
