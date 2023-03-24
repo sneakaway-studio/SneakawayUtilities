@@ -55,8 +55,8 @@ git submodule add https://github.com/sneakaway-studio/SneakawayUtilities Sneakaw
 ```bash
 # change into the /Assets dir
 cd ../Assets
-# (if it doesn't exist) create a Plugins folder
-mkdir Plugins
+# (if it doesn't exist) create a Plugins folder and cd into it
+mkdir Plugins && cd Plugins
 # create a symlink named "SneakawayUtilities" that links to **ASSETS** folder in lib
 ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 ```
