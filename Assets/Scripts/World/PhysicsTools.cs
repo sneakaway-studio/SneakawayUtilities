@@ -43,7 +43,7 @@ namespace SneakawayUtilities
             );
         }
 
-        /// <summary>Return true if point is inside worldcontainer collider</summary>
+        /// <summary>Return true if point is inside the collider</summary>
         /// <param name="collider"></param>
         /// <param name="point"></param>
         /// <returns></returns>
