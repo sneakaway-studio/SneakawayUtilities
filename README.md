@@ -95,6 +95,14 @@ Move a submodule
 git mv old/submod new/submod
 ```
 
+Remove a submodule ([i](https://stackoverflow.com/a/1260982/441878))
+
+```bash
+git rm <path-to-submodule>
+```
+
+
+
 Add or update https://devconnected.com/how-to-add-and-update-git-submodules/
 
 
