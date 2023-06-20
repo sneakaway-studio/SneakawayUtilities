@@ -41,9 +41,12 @@ cd ~/<project_root>
 mkdir Submodules
 # change into it
 cd Submodules
-# add the lib project (from remote) as a submodule of proj
+# (optional) make sure GIT LFS is installed
+git lfs install
+# add the lib project (from remote) as a submodule of proj (*Make sure you have read access to the repo*)
 git submodule add https://github.com/sneakaway-studio/SneakawayUtilities SneakawayUtilities
 ```
+
 ^ This ensures the code is now shared in both project but tracked by git. However, because it is not inside /Assets then Unity doesn't actually import the code into the **proj**. So, we need to link the code...
 
 
@@ -52,8 +55,8 @@ git submodule add https://github.com/sneakaway-studio/SneakawayUtilities Sneakaw
 ```bash
 # change into the /Assets dir
 cd ../Assets
-# (if it doesn't exist) create a Plugins folder
-mkdir Submodules
+# (if it doesn't exist) create a Plugins folder and cd into it
+mkdir Plugins && cd Plugins
 # create a symlink named "SneakawayUtilities" that links to **ASSETS** folder in lib
 ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 ```
@@ -91,6 +94,14 @@ Move a submodule
 ```bash
 git mv old/submod new/submod
 ```
+
+Remove a submodule ([i](https://stackoverflow.com/a/1260982/441878))
+
+```bash
+git rm <path-to-submodule>
+```
+
+
 
 Add or update https://devconnected.com/how-to-add-and-update-git-submodules/
 
