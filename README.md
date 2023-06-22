@@ -3,21 +3,25 @@
 
 Share common Unity / C# code across projects
 
+
 ## About
 
-This "utilities" project uses the "linked submodule" method to share code across multiple Unity projects...
+A "utilities" project to share code across multiple Unity projects:
 
-- It lives in its own Unity project, so we can write tests
-- It has own Git repo so code can be edited / pushed back to origin
-- When used in other Unity projects only the `Assets/` folder is symlinked so it will not cause Unity project / Git submodule issues (submodule duplicates in Github Desktop). More details: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
-- Everything should be "namespaced" so protected from pollution
+- It lives in its own Unity project, so we can write tests.
+- It has own Git repo so code can be edited / pushed back to origin.
+- When used in other Unity projects only the `Assets/` folder is [symlinked](https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/) so it will not cause Unity project or Git (ahem, submodules*) issues.
+- Everything is be "namespaced" so protected from pollution.
 
 ```cs
 // structure of "<Category>Tools" where static methods live
 // everything else is a droppable monobehavior
-namespace SneakawayUtilities {
-	public static class MathTools {
-		public static int Random(){
+namespace SneakawayUtilities 
+{
+	public static class MathTools 
+    {
+		public static int Random()
+        {
 			// code
 		}
 	}
@@ -26,7 +30,89 @@ namespace SneakawayUtilities {
 
 
 
-## Usage
+
+
+
+
+## Instructions
+
+1. Clone to any location on your computer (these steps assume the same parent directory)
+
+```bash
+# change into the directory (e.g. where your other projects live)
+cd ~/Documents/Github/
+
+# clone the repository
+git clone https://github.com/sneakaway-studio/SneakawayUtilities.git
+```
+
+2. Add a folder in your Unity project where the files will be linked
+
+```bash
+# change into the existing project
+cd ~/Documents/Github/CoolProject/Assets/
+
+# add new folder for the symlink (can be any name) and change into it
+mkdir Plugins && cd Plugins
+```
+
+3. Create a symlink to the project's Asset folder from your Unity project.
+
+```bash
+# Mac: create symlink named "SneakawayUtilities" pointing to Assets/
+ln -s ../../../SneakawayUtilities/Assets/ SneakawayUtilities
+
+# Windows: 
+???
+```
+
+
+
+
+
+
+
+
+## Dependencies
+
+https://github.com/akbiggs/UnityTimer
+
+
+## To do
+
+- [ ] Import many more scripts inside Graverobbers Passage
+- [ ] Switch those scripts in Graverobbers Passage to this repo
+
+ 
+
+
+
+
+## References
+
+- [Source for resolutions table](https://github.com/omundy/learn-computing/blob/main/topics/displays.md)
+- [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/)
+- [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
+- [The Complete Guide to Creating Symbolic Links (aka Symlinks) on Windows](https://www.howtogeek.com/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/)
+- [What are essential differences in the implementation of Symbolic Links between Windows and Linux?](https://www.serveradminz.com/blog/essential-differences-implementation-symbolic-links-windows-linux/)
+
+
+
+
+
+
+
+
+
+
+
+
+<details>
+<summary>Former method using submodules</summary>
+
+
+*Formerly I used Git Submodule to embed the repository in the parent repo but I found submodules (and SourceTree) to be way too complicated to use, and managing branches from all the separate projects was a pain. 
+
 
 ### Installation
 
@@ -34,7 +120,6 @@ The below steps cover two use cases:
 
 1. The submodule ***is already installed*** (look in .gitmodules to confirm) in a "parent" project that you have cloned
 2. You need to install this project as a ***new*** submodule inside a "parent" project
-
 
 
 #### Option 1: Update the submodule already installed in your project
@@ -78,8 +163,6 @@ ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 
 
 
-
-
 ### Editing the code
 
 - You can create/edit/delete files in any of the following
@@ -92,46 +175,28 @@ ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 
 
 
-
-
-
-
-
-## To do
-
-- [ ] Import many more scripts inside Graverobbers Passage
-- [ ] Switch those scripts in Graverobbers Passage to this repo
-- [ ] Find out if it is possible to, instead of installing the utilities as a submodule, just clone it into the parent repo and add it to gitignore as a non-tracked directory instead????
- 
-
-
-
 ## Extra submodule commands
 
-Move a submodule
+
+### Move a submodule
 
 ```bash
 git mv old/submod new/submod
 ```
 
-Remove a submodule ([i](https://stackoverflow.com/a/1260982/441878))
+### Remove a submodule
 
 ```bash
-git rm <path-to-submodule>
+# 1. delete the submodule folder
+# 2. delete lines in .gitmodules file pointing to the module
+# 3. delete reference in .git folder
+rm -rf  ../../.git/modules/Submodules/SneakawayUtilities
 ```
-
 
 
 Add or update https://devconnected.com/how-to-add-and-update-git-submodules/
 
 
-
-## Dependencies
-
-https://github.com/akbiggs/UnityTimer
+</details>
 
 
-
-## Source for resolutions table
-
-learn-computing/topics/graphics.md
