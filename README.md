@@ -5,11 +5,12 @@ Share common Unity / C# code across projects
 
 ## About
 
-This project uses the "linked submodule" method to share code across multiple Unity projects...
-- In its own Unity project, so we can write tests
-- Its own Git repo so code can be edited / pushed back to origin
-- Only `Assets/` folder is symlinked so no Unity project / Git submodule issues (submodule duplicates in Github Desktop). Refer to these tutorials for details: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
+This "utilities" project uses the "linked submodule" method to share code across multiple Unity projects...
 
+- It lives in its own Unity project, so we can write tests
+- It has own Git repo so code can be edited / pushed back to origin
+- When used in other Unity projects only the `Assets/` folder is symlinked so it will not cause Unity project / Git submodule issues (submodule duplicates in Github Desktop). More details: [Method for Working with Shared Code with Unity and Git](https://prime31.github.io/A-Method-for-Working-with-Shared-Code-with-Unity-and-Git/) and [Git-submodules in Unity](https://cschnack.de/blog/2019/gitsubm/)
+- Everything should be "namespaced" so protected from pollution
 
 ```cs
 // structure of "<Category>Tools" where static methods live
@@ -25,17 +26,31 @@ namespace SneakawayUtilities {
 
 
 
+## Usage
+
+### Installation
+
+The below steps cover two use cases:
+
+1. The submodule is already installed in a "parent" project that you have cloned
+2. You need to install this project as a submodule inside a "parent" project
 
 
 
-
-## To install in a Unity project
-
-
-### 1. Import the lib as submodule
+#### Option 1: Update the submodule already installed in your project
 
 ```bash
-# confirm you are in *your* project root
+# confirm you are in the "parent" project root (e.g. cd ~/Documents/Github/CTS-Viz/)
+cd ~/<project_root>
+# update the submodule
+git submodule update --init --recursive
+```
+
+
+#### Option 2a. Add the repository to the parent
+
+```bash
+# confirm you are in the "parent" project root (e.g. cd ~/Documents/Github/CTS-Viz/)
 cd ~/<project_root>
 # create a folder (for all submodules)
 mkdir Submodules
@@ -43,14 +58,14 @@ mkdir Submodules
 cd Submodules
 # (optional) make sure GIT LFS is installed
 git lfs install
-# add the lib project (from remote) as a submodule of proj (*Make sure you have read access to the repo*)
+# add the utilities (from remote) as a submodule of project (*Make sure you have read access to the repo or this will fail!*)
 git submodule add https://github.com/sneakaway-studio/SneakawayUtilities SneakawayUtilities
 ```
 
 ^ This ensures the code is now shared in both project but tracked by git. However, because it is not inside /Assets then Unity doesn't actually import the code into the **proj**. So, we need to link the code...
 
 
-### 2. Link the lib code
+#### Option 2b. Link the lib code
 
 ```bash
 # change into the /Assets dir
@@ -61,7 +76,11 @@ mkdir Plugins && cd Plugins
 ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 ```
 
-### 3. Edit the code
+
+
+
+
+### Editing the code
 
 - You can create/edit/delete files in any of the following
 	- `~/<project>/Submodules`
@@ -82,8 +101,8 @@ ln -s ../../Submodules/SneakawayUtilities/Assets/ SneakawayUtilities
 
 - [ ] Import many more scripts inside Graverobbers Passage
 - [ ] Switch those scripts in Graverobbers Passage to this repo
-
-
+- [ ] Find out if it is possible to, instead of installing the utilities as a submodule, just clone it into the parent repo and add it to gitignore as a non-tracked directory instead????
+ 
 
 
 
