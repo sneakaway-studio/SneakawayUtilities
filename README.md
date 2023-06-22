@@ -32,8 +32,8 @@ namespace SneakawayUtilities {
 
 The below steps cover two use cases:
 
-1. The submodule is already installed in a "parent" project that you have cloned
-2. You need to install this project as a submodule inside a "parent" project
+1. The submodule ***is already installed*** (look in .gitmodules to confirm) in a "parent" project that you have cloned
+2. You need to install this project as a ***new*** submodule inside a "parent" project
 
 
 
