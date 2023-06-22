@@ -1,45 +1,21 @@
 
 # SneakawayUtilities
 
-Share common Unity / C# code across projects
+
 
 
 ## About
 
-A "utilities" project to share code across multiple Unity projects:
-
-- It lives in its own Unity project, so we can write tests.
-- It has own Git repo so code can be edited / pushed back to origin.
-- When used in other Unity projects only the `Assets/` folder is [symlinked](https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/) so it will not cause Unity project or Git (ahem, submodules*) issues.
-- Everything is be "namespaced" so protected from pollution.
-
-```cs
-// structure of "<Category>Tools" where static methods live
-// everything else is a droppable monobehavior
-namespace SneakawayUtilities 
-{
-	public static class MathTools 
-    {
-		public static int Random()
-        {
-			// code
-		}
-	}
-}
-```
-
-
-
-
+A "utilities" project to share code across multiple Unity projects
 
 
 
 ## Instructions
 
-1. Clone to any location on your computer (these steps assume the same parent directory)
+1. Clone repository (these steps assume the same parent directory)
 
 ```bash
-# change into the directory (e.g. where your other projects live)
+# change to the directory (e.g. where your other projects live)
 cd ~/Documents/Github/
 
 # clone the repository
@@ -59,15 +35,36 @@ mkdir Plugins && cd Plugins
 3. Create a symlink to the project's Asset folder from your Unity project.
 
 ```bash
-# Mac: create symlink named "SneakawayUtilities" pointing to Assets/
+# Teminal: create symlink named "SneakawayUtilities" pointing to Assets/
 ln -s ../../../SneakawayUtilities/Assets/ SneakawayUtilities
 
-# Windows: 
-???
+# Windows: Using the command prompt
+mklink /D "C:\Users\<user>\Documents\GitHub\CoolProject\Assets\Plugins\SneakawayUtilities" "..\..\Submodules\SneakawayUtilities\Assets"
 ```
 
 
 
+
+## Details
+
+- Lives in its own Unity project, so we can write tests.
+- Has own Git repo so code can be edited / pushed back to origin.
+- When used in other Unity projects only the `Assets/` folder appears via [symlink](https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/) so does not cause Unity or Git (ahem, submodules*) issues.
+- Everything is be "namespaced" so protected from pollution.
+- All code is embedded in static methods or else is a droppable Monobehavior.
+
+```cs
+namespace SneakawayUtilities 
+{
+	public static class MathTools 
+    {
+		public static int Random()
+        {
+			// code
+		}
+	}
+}
+```
 
 
 
