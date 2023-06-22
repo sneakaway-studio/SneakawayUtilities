@@ -27,5 +27,18 @@ namespace SneakawayUtilities
         }
 
 
+
+        public List<string> LinesToList(string stringToSplit)
+        {
+            return stringToSplit.Trim()?.Split('\n').Select(txt => txt.Trim()).ToList();
+        }
+        public string SplitToLines(string stringToSplit, int maximumLineLength)
+        {
+            return Regex.Replace(stringToSplit, @"(.{1," + maximumLineLength + @"})(?:\s|$)", "$1\n");
+        }
+
+
+
+
     }
 }
