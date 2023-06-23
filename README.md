@@ -1,12 +1,7 @@
 
 # SneakawayUtilities
 
-
-
-
-## About
-
-A "utilities" project to share code across multiple Unity projects
+A collection of Unity/C# utilities
 
 
 
