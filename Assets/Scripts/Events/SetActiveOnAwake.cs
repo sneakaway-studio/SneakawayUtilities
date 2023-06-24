@@ -8,6 +8,8 @@ using SneakawayUtilities;
  *  - good for prefabs, gizmos, markers, etc. left out, or hiding "pop up" UIs when not in use.
  */
 
+// MARK FOR DELETION - REPLACED BY SetActiveOnEvent
+
 namespace SneakawayUtilities
 {
     public class SetActiveOnAwake : MonoBehaviour
