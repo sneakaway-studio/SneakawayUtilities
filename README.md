@@ -33,7 +33,9 @@ mkdir Plugins && cd Plugins
 # Teminal: create symlink named "SneakawayUtilities" pointing to Assets/
 ln -s ../../../SneakawayUtilities/Assets/ SneakawayUtilities
 
-# Windows: Using the command prompt
+# Windows: Using Git bash (same as above)
+
+# Windows (untested): Using the command prompt
 mklink /D "C:\Users\<user>\Documents\GitHub\CoolProject\Assets\Plugins\SneakawayUtilities" "..\..\Submodules\SneakawayUtilities\Assets"
 ```
 
