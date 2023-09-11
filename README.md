@@ -35,8 +35,8 @@ ln -s ../../../SneakawayUtilities/Assets/ SneakawayUtilities
 
 # Windows: Using Git bash (same as above)
 
-# Windows (untested): Using the command prompt
-mklink /D "C:\Users\<user>\Documents\GitHub\CoolProject\Assets\Plugins\SneakawayUtilities" "..\..\Submodules\SneakawayUtilities\Assets"
+# Windows (untested): Using the command prompt (assuming you are at: C:\Users\<user>\Documents\GitHub\CoolProject\Assets\Plugins\
+mklink /D "SneakawayUtilities" "..\..\..\SneakawayUtilities\Assets"
 ```
 
 
