@@ -39,6 +39,11 @@ ln -s ../../../SneakawayUtilities/Assets/ SneakawayUtilities
 mklink /D "SneakawayUtilities" "..\..\..\SneakawayUtilities\Assets"
 ```
 
+4. Add `SneakawayUtilities` to .gitignore in case Windows has issues
+
+
+
+
 
 
 
