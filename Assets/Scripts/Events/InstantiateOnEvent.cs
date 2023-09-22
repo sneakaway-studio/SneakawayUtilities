@@ -49,6 +49,7 @@ namespace SneakawayUtilities
 
         void Trigger()
         {
+            Debug.Log("Trigger()");
             for (int i = 0; i < count; i++)
             {
                 if (boxCollider != null) initialPosition = PhysicsTools.RandomPointInBounds(boxCollider.bounds);
