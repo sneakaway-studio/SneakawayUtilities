@@ -21,6 +21,12 @@ public class Listener_LoadPrefab : MonoBehaviour
     [Tooltip("Event has been received")]
     [SerializeField] int triggered;
 
+    [Tooltip("Max prefabs allowed")]
+    [SerializeField] int maxPrefabs = 1;
+
+    [Tooltip("Loaded prefab")]
+    [SerializeField] GameObject loaded;
+
     //[Tooltip("Delay in seconds")]
     //[SerializeField] float delay;
 
@@ -37,9 +43,14 @@ public class Listener_LoadPrefab : MonoBehaviour
     {
         Debug.Log("Listener_LoadPrefab.Trigger()");
         // only once
-        if (triggerLimit < 0 || ++triggered < triggerLimit)
+        if (triggerLimit < 0 || triggered < triggerLimit)
         {
-            GameObject loaded = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            if (loaded != null && transform.childCount >= maxPrefabs)
+            {
+                Destroy(loaded);
+            }
+            triggered++;
+            loaded = Instantiate(prefab, Vector3.zero, Quaternion.identity);
             loaded.transform.SetParent(transform, false);
             loaded.transform.localScale = Vector3.one;
             loaded.transform.localPosition = Vector3.zero;
