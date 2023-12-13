@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace SneakawayUtilities
 {
@@ -191,7 +192,30 @@ namespace SneakawayUtilities
             return list[list.RandomListIndex()];
         }
 
-
+        /// <summary>
+		/// Return a random index from any list, not in stop list. Call using await in an async method.
+		/// </summary>
+		/// <param name="list"></param>
+		/// <param name="stoplist"></param>
+		/// <returns></returns>
+        public static async Task<string> RandomSpecificListValue(List<string> list, List<string> stoplist)
+        {
+            await Task.Yield();
+            int safety = 0;
+            string str = MathTools.RandomListValue(list);
+            // make sure selected string is not in the stoplist
+            while (stoplist.Contains(str))
+            {
+                // try again
+                str = MathTools.RandomListValue(list);
+                if (++safety > 100)
+                {
+                    Debug.LogWarning("Safety first!");
+                    break;
+                }
+            }
+            return str;
+        }
 
 
 
