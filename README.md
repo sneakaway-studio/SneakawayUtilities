@@ -42,7 +42,18 @@ mklink /D "SneakawayUtilities" "..\..\..\SneakawayUtilities\Assets"
 4. Add `SneakawayUtilities` to .gitignore in case Windows has issues
 
 
+## Windows notes
 
+On Windows, if you pull updates to this project Unity will not fetch the changes into Assets, even though they are updated in the utilities project folder. So
+
+```bash
+# change into the Unity project that is importing utilities
+cd Assets/Plugins/
+# remove the imported version (again, in the importing project)
+rm -rf SneakawayUtilities
+# re-linked the original repo
+ln -s ../../../SneakawayUtilities/Assets/ SneakawayUtilities
+```
 
 
 
