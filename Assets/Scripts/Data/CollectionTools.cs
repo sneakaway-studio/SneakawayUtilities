@@ -27,6 +27,35 @@ namespace SneakawayUtilities
 
 
 
+        /// <summary>
+		/// Find a transform in a child (used non-static w/o transform parameter)
+		/// </summary>
+		/// <param name="transform"></param>
+		/// <param name="str"></param>
+		/// <returns></returns>
+        public static Transform FindChildTransformSafe(Transform transform, string str)
+        {
+            try
+            {
+                Transform t = transform.Find(str);
+                if (t != null) return t;
+            }
+            catch (MissingReferenceException e)
+            {
+                Debug.Log(e.Message);
+            }
+            return transform;
+        }
+
+
+
+        public static void HideAllInList(List<GameObject> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].gameObject.SetActive(false);
+            }
+        }
 
 
 
