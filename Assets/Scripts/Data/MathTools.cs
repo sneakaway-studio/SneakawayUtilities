@@ -28,6 +28,20 @@ namespace SneakawayUtilities
         }
 
 
+        /////////////////////////////////
+        ////////// RANDOM INT ///////////
+        /////////////////////////////////
+
+        /// <summary>
+        /// Return a number clamped between min/max
+        /// </summary>
+        public static float Clamp(float val, float min = 0f, float max = 1f)
+        {
+            // return Mathf.Max(min, Mathf.Min(val, max));
+            return Mathf.Min(max, Mathf.Max(val, min));
+        }
+
+
 
         /////////////////////////////////
         //////// RANDOM CHANCE //////////
