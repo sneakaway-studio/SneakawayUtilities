@@ -29,16 +29,24 @@ namespace SneakawayUtilities
 
 
         /////////////////////////////////
-        ////////// RANDOM INT ///////////
+        //////////// VALUES /////////////
         /////////////////////////////////
+
+        /// <summary>
+        /// Round a number to decimal place
+        /// </summary>
+        public static float Round(float val, int place = 2)
+        {
+            return (float)System.Math.Round((double)val, place);
+        }
 
         /// <summary>
         /// Return a number clamped between min/max
         /// </summary>
         public static float Clamp(float val, float min = 0f, float max = 1f)
         {
-            // return Mathf.Max(min, Mathf.Min(val, max));
             return Mathf.Min(max, Mathf.Max(val, min));
+            // oops https://docs.unity3d.com/ScriptReference/Mathf.Clamp.html
         }
 
 
