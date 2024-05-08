@@ -191,6 +191,30 @@ namespace SneakawayUtilities
         }
 
 
+        /////////////////////////////////
+        //////// RANDOM ARRAY<T> ////////
+        /////////////////////////////////
+
+        /// <summary>Return a random index from any Array<T></summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static int RandomArrayIndex<T>(this T[] arr)
+        {
+            return (int)Random.Range(0, arr.Length);
+        }
+        /// <summary>Return a random index from any List</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static T RandomArrayValue<T>(this T[] arr)
+        {
+            return arr[arr.RandomArrayIndex()];
+        }
+
+
+
+
 
         /////////////////////////////////
         //////// RANDOM LIST<T> /////////
