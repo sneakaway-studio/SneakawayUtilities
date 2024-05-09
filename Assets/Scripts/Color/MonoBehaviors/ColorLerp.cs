@@ -3,48 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using SneakawayUtilities;
 
+// Added Base Class on May 9, 2024 (HairGuitar) - may need adjustment for previous uses (CTS-VIZ)
+
 namespace SneakawayUtilities
 {
-
-    public class ColorLerp : MonoBehaviour
+    public class ColorLerp : ColorLerpBase
     {
-        [Tooltip("List of colors to transition. First color is starting color, duration is how long to transition to next")]
-        public List<ColorTools.ColorTransition> colors;
+        // ColorLerpBase fields here ...
 
-        [Tooltip("Current color")]
-        public TimeTools.Indexer indexer;
+
+        [Header("ColorLerp")]
 
         [Tooltip("Material for this game object")]
         public Material material;
 
-        void Awake()
+        // overriding so to get references
+         protected override void Awake()
         {
             material = GetComponent<Renderer>().material;
-            indexer = new TimeTools.Indexer(colors.Count);
-            ChangeColor();
+            base.Awake();
         }
 
-        void Update()
+        protected override void ChangeColor() 
         {
-            // an older, simpler time
-            //material.color = Color.Lerp(color1, color2, Mathf.PingPong(Time.time, 1));
-
-            if (ColorTools.AreEqual(material.color, colors[indexer.next].color))
-            {
-                ChangeColor();
-            }
+            // change local color
+            LerpMaterialColor();
+            // set component color
+            material.color = color;
         }
 
-        void ChangeColor()
+        void LerpMaterialColor()
         {
-            indexer.NextIndex();
-            SneakawayUtilities.ColorTools.ChangeMaterialColor(this, material, colors[indexer.current].color, colors[indexer.next].color, colors[indexer.current].duration, false);
+            // old method? uses coroutines
+            // indexer.NextIndex();
+            // SneakawayUtilities.ColorTools.ChangeMaterialColor(this, material, colors[indexer.current].color, colors[indexer.next].color, colors[indexer.current].duration, false);
+
+
+
+            // update time    
+            time += Time.deltaTime / colors[indexer.current].duration;
+
+            // change color
+            color = Color.Lerp(colors[indexer.current].color, colors[indexer.next].color, time);
+
         }
-
-
-
-
 
     }
-
 }

@@ -3,43 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using SneakawayUtilities;
 
+// Added Base Class on May 9, 2024 (HairGuitar) - may need adjustment for previous uses (CTS-VIZ)
+
 namespace SneakawayUtilities
 {
-
-    public class ColorLerpLight : MonoBehaviour
+    public class ColorLerpLight : ColorLerpBase
     {
-        [Tooltip("List of colors to transition. First color is starting color, duration is how long to transition to next")]
-        public List<ColorTools.ColorTransition> colors;
+        // ColorLerpBase fields here ...
 
-        [Tooltip("Current color")]
-        public TimeTools.Indexer indexer;
+
+        [Header("ColorLerpLight")]
 
         [Tooltip("Light on this game object")]
         public ColorInstance colorInstance;
 
         public Light lightComponent;
 
-        void Awake()
+        // overriding so to get references
+        protected override void Awake()
         {
             if (colorInstance == null) colorInstance = GetComponent<ColorInstance>();
             if (lightComponent == null) lightComponent = GetComponent<Light>();
-            indexer = new TimeTools.Indexer(colors.Count);
-            ChangeColor();
+            base.Awake();
         }
 
-        void Update()
+        protected override void ChangeColor() 
         {
-            // an older, simpler time
-            //material.color = Color.Lerp(color1, color2, Mathf.PingPong(Time.time, 1));
-
-            if (ColorTools.AreEqual(lightComponent.color, colors[indexer.next].color))
-            {
-                ChangeColor();
-            }
-            lightComponent.color = colorInstance.color;
+            // change local color
+            LerpLightColor();
+            // set component color
+            lightComponent.color = color;
         }
 
-        void ChangeColor()
+        void LerpLightColor()
         {
             indexer.NextIndex();
             ColorTools.ChangeInstanceColor(this, colorInstance, colors[indexer.current].color, colors[indexer.next].color, colors[indexer.current].duration, false);

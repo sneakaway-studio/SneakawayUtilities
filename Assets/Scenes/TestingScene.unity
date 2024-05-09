@@ -596,6 +596,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900653189280d4d468b68db993e6a739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onEvent: 1
+  autoTransition: 1
+  inProgress: 0
+  time: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   colors:
   - color: {r: 0.03958533, g: 0, b: 0.4528302, a: 1}
     duration: 2
@@ -836,7 +841,7 @@ Transform:
   m_GameObject: {fileID: 1193005924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -965,6 +970,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2efd5efae7742cf8c6c7208063adda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onEvent: 0
+  autoTransition: 0
+  inProgress: 0
+  time: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   colors:
   - color: {r: 1, g: 0, b: 0, a: 0}
     duration: 3
@@ -1253,6 +1263,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900653189280d4d468b68db993e6a739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onEvent: 1
+  autoTransition: 1
+  inProgress: 0
+  time: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   colors:
   - color: {r: 1, g: 0, b: 0, a: 1}
     duration: 5
