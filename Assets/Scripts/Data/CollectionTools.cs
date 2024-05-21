@@ -12,6 +12,27 @@ namespace SneakawayUtilities
         //////////// LIST<T> ////////////
         /////////////////////////////////
 
+        /// <summary>Find index of list<T> item where field = val (good for data organized by slug)</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns>-1 if not found</returns>
+        public static int FindListIndexByPropertyValue<T>(List<T> list, string field, string val)
+        {
+            int _index = -1;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (Equals(list[i].GetType().GetField(field).GetValue(list[i]), val))
+                {
+                    return i;
+                }
+            }
+            return _index;
+
+
+        //     return list.FindIndex(p =>
+        //         Equals(p.GetType().GetProperty(field).GetValue(list), val));
+        }
+
         /// <summary>Remove (not destroy) all in items from any List<T></summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>

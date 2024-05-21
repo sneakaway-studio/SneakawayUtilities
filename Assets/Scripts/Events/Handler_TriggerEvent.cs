@@ -10,6 +10,8 @@ public class Handler_TriggerEvent : MonoBehaviour
 
     public void Trigger()
     {
+        // if not working set debug=true in EventManager
+        //Debug.Log("Handler_TriggerEvent() > " + eventName);
         EventManager.TriggerEvent(eventName);
     }
 

@@ -21,6 +21,21 @@ namespace SneakawayUtilities
         }
 
 
+
+
+    public static Color GetRgbFromHex(string hex = "FF0000")
+    {
+        Color newColor = Color.red;
+        if (ColorUtility.TryParseHtmlString(hex, out newColor))
+        {
+            return newColor;
+        }
+return newColor;
+    }
+
+
+
+
         /////////////////////////////////
         ///////// RANDOM COLORS /////////
         /////////////////////////////////
