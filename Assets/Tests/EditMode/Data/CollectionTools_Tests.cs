@@ -9,6 +9,44 @@ public class CollectionTools_Tests
 {
 
 	/////////////////////////////////
+	//////////// FORMAT /////////////
+	/////////////////////////////////
+
+	public enum Colors { Red, Green, Blue, Yellow };
+
+	[Test]
+	[TestCase(Colors.Red, "Red")]
+	[TestCase(Colors.Blue, "Blue")]
+	public void GetStringFromEnum(Colors color, string expected)
+	{
+		string val = CollectionTools.GetStringFromEnum(color);
+		Assert.IsTrue(val.GetType() == typeof(string), "Type passes");
+		Assert.IsTrue(val == expected, "Value passes");
+	}
+
+	[Test]
+	[TestCase(Colors.Red, 0)]
+	[TestCase(Colors.Blue, 2)]
+	public void GetEnumFromInt(Colors expected, int index)
+	{
+		Colors val = CollectionTools.GetEnumFromInt<Colors>(index);
+		Assert.IsTrue(val.GetType() == typeof(Colors), "Type passes");
+		Assert.IsTrue(val == expected, "Value passes");
+	}
+
+	[Test]
+	[TestCase(Colors.Red, 0)]
+	[TestCase(Colors.Blue, 2)]
+	public void GetIntFromEnum(Colors color, int expected)
+	{
+		int index = CollectionTools.GetIntFromEnum(color);
+		Assert.IsTrue(index.GetType() == typeof(int), "Type passes");
+		Assert.IsTrue(index == expected, "Value passes");
+	}
+
+
+
+	/////////////////////////////////
 	//////////// LIST<T> ////////////
 	/////////////////////////////////
 

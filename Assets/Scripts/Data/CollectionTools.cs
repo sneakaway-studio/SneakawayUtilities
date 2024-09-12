@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,32 @@ namespace SneakawayUtilities
 	public static class CollectionTools
 	{
 
+		/////////////////////////////////
+		///////////// ENUM //////////////
+		/////////////////////////////////
 
+		/// <summary>[Extension] Return enum value as string</summary>
+		public static string GetStringFromEnum<T>(this T value) where T : Enum
+		{
+			return Enum.GetName(typeof(T), value);
+		}
+
+		public static T GetEnumFromInt<T>(this int value) where T : Enum
+		{
+			if (Enum.IsDefined(typeof(T), value))
+			{
+				return (T)Enum.ToObject(typeof(T), value);
+			}
+			else
+			{
+				throw new ArgumentException($"{value} is not a valid value for enum {typeof(T).Name}");
+			}
+		}
+		/// <summary>[Extension] Return enum value as int</summary>
+		public static int GetIntFromEnum<T>(this T value) where T : Enum
+		{
+			return (int)(object)value;
+		}
 
 
 		/////////////////////////////////
