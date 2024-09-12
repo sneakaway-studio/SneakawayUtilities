@@ -28,17 +28,34 @@ public class StringTools_Tests
 	}
 
 
+	/////////////////////////////////
+	/////////// CONVERT /////////////
+	/////////////////////////////////
 
 	[Test]
 	public void LinesToList()
 	{
+		// setup
 		string str = "hello\nworld\n!";
 		List<string> val = StringTools.LinesToList(str);
+		// check
 		Assert.IsTrue(val.GetType() == typeof(List<string>), "Type passes");
-		Debug.Log(val);
 		Assert.IsTrue(val.Count == 3, "Length passes");
 		Assert.IsTrue(val[2] == "!", "Value passes");
 	}
+
+	[Test]
+	public void StringToVector3()
+	{
+		// setup
+		string str = "(1,2f,3.0f)";
+		Vector3 val = StringTools.StringToVector3(str);
+		// check
+		Assert.IsTrue(val.GetType() == typeof(Vector3), "Type passes");
+		Debug.Log(val);
+		Assert.IsTrue(val.x == 1f, "Value passes");
+	}
+
 
 
 }

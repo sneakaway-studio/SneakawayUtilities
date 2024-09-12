@@ -44,6 +44,10 @@ namespace SneakawayUtilities
 		}
 
 
+		/////////////////////////////////
+		/////////// CONVERT /////////////
+		/////////////////////////////////
+
 		/// <summary>
 		/// Split text by line breaks to a list
 		/// </summary>
@@ -59,7 +63,24 @@ namespace SneakawayUtilities
 		}
 
 
-
+		/// <summary>
+		/// Convert a "(0,0,0)" string to Vector3
+		/// </summary>
+		public static Vector3 StringToVector3(string str)
+		{
+			// remove parentheses
+			str = str.Replace("(", "").Replace(")", "");
+			// split, cast, return
+			string[] arr = str.Split(',');
+			Vector3 result = new Vector3();
+			if (float.TryParse(arr[0], out float x) &&
+				float.TryParse(arr[0], out float y) &&
+				float.TryParse(arr[0], out float z))
+			{
+				result = new Vector3(x, y, z);
+			}
+			return result;
+		}
 
 
 	}
