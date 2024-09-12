@@ -68,11 +68,10 @@ namespace SneakawayUtilities
         /// <returns></returns>
         public static List<T> RemoveAllFromList<T>(List<T> list)
         {
-            for (int i = 0; i < list.Count; i++)
-            {
-                list.RemoveAt(i);
-            }
-            return list;
+			int i = list.Count-1;
+			while (i >= 0)
+				list.RemoveAt(i--);
+			return list;
         }
 
 
