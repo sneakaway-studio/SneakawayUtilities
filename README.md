@@ -91,8 +91,8 @@ https://github.com/akbiggs/UnityTimer
 ## To do
 
 - [ ] Import many more scripts inside Graverobbers Passage
-- [ ] Switch those scripts in Graverobbers Passage to this repo
-
+- [ ] Switch scripts in Graverobbers Passage to this repo
+- [ ] Consider how others' have built [similar](https://github.com/cjm399/Unity_UtilityImports/blob/main/Documentation/Static-Utility-Scripts.md) projects
  
 
 
