@@ -22,7 +22,7 @@ namespace SneakawayUtilities
 
 
 
-
+/// https://docs.unity3d.com/ScriptReference/ColorUtility.TryParseHtmlString.html
     public static Color GetRgbFromHex(string hex = "FF0000")
     {
         Color newColor = Color.red;
@@ -33,6 +33,17 @@ namespace SneakawayUtilities
 return newColor;
     }
 
+    /// USE THIS ONE
+    /// <summary>Return an RGB Color</summary>
+	/// https://docs.unity3d.com/ScriptReference/ColorUtility.TryParseHtmlString.html
+    public static Color GetColorFromHex(string _hex = "FF0000")
+    {
+        Color newColor;
+		// The "#" is required or it will treat the string as a "color name"
+        if (ColorUtility.TryParseHtmlString("#" + _hex, out newColor))
+            return newColor;
+        return Color.red;
+    }
 
 
 
