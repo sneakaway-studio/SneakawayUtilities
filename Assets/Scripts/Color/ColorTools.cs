@@ -22,28 +22,16 @@ namespace SneakawayUtilities
 
 
 
-/// https://docs.unity3d.com/ScriptReference/ColorUtility.TryParseHtmlString.html
-    public static Color GetRgbFromHex(string hex = "FF0000")
-    {
-        Color newColor = Color.red;
-        if (ColorUtility.TryParseHtmlString(hex, out newColor))
+        /// <summary>Return an RGB Color</summary>
+        /// https://docs.unity3d.com/ScriptReference/ColorUtility.TryParseHtmlString.html
+        public static Color GetColorFromHex(string hex = "FF0000")
         {
-            return newColor;
+            // "#" is required or it will treat the string as a "color name"
+            if (hex[0] != '#') hex = "#" + hex;
+            Color color = Color.red;
+            ColorUtility.TryParseHtmlString(hex, out color);
+            return color;
         }
-return newColor;
-    }
-
-    /// USE THIS ONE
-    /// <summary>Return an RGB Color</summary>
-	/// https://docs.unity3d.com/ScriptReference/ColorUtility.TryParseHtmlString.html
-    public static Color GetColorFromHex(string _hex = "FF0000")
-    {
-        Color newColor;
-		// The "#" is required or it will treat the string as a "color name"
-        if (ColorUtility.TryParseHtmlString("#" + _hex, out newColor))
-            return newColor;
-        return Color.red;
-    }
 
 
 
@@ -153,6 +141,39 @@ return newColor;
             else if (callback != null) callback();
         }
 
+
+
+
+
+        /// <summary>Creates color with corrected brightness. Reference https://stackoverflow.com/a/12598573/441878 </summary>
+        /// <param name="color">Color to correct.</param>
+        /// <param name="correctionFactor">The brightness correction factor. Must be between -1 and 1.
+        /// Negative values produce darker colors.</param>
+        public static Color ChangeColorBrightness(Color color, float correctionFactor)
+        {
+            float red = (float)color.r;
+            float green = (float)color.g;
+            float blue = (float)color.b;
+            float alpha = (float)color.a;
+            // Debug.Log($"1- R {red} B {green} B {blue}");
+
+            if (correctionFactor < 0)
+            {
+                correctionFactor = 1 + correctionFactor;
+                red *= correctionFactor;
+                green *= correctionFactor;
+                blue *= correctionFactor;
+            }
+            else
+            {
+                red = (1 - red) * correctionFactor + red;
+                green = (1 - green) * correctionFactor + green;
+                blue = (1 - blue) * correctionFactor + blue;
+            }
+            // Debug.Log($"2- R {red} B {green} B {blue}");
+
+            return new Color(red, green, blue, alpha);
+        }
 
 
     }
